@@ -19,13 +19,9 @@ type newBlock struct {
 	properties map[string]interface{}
 }
 
-//go:linkname world_blocksHash git.jetbrains.space/dragonfly/dragonfly.git/dragonfly/world.blocksHash
+//go:linkname world_blockByNameAndProperties git.jetbrains.space/dragonfly/dragonfly.git/dragonfly/world.blockByNameAndProperties
 //noinspection ALL
-var world_blocksHash map[string]world.Block
-
-//go:linkname world_hashProperties git.jetbrains.space/dragonfly/dragonfly.git/dragonfly/world.hashProperties
-//noinspection ALL
-func world_hashProperties(map[string]interface{}) string
+func world_blockByNameAndProperties(name string, properties map[string]interface{}) (block world.Block, found bool)
 
 func init() {
 	for _, value := range conversion {

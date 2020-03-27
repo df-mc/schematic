@@ -53,8 +53,8 @@ func (s *schematic) At(x, y, z int) world.Block {
 	if !ok {
 		return block.Air{}
 	}
-	ret := world_blocksHash[n.name+world_hashProperties(n.properties)]
-	if ret == nil {
+	ret, ok := world_blockByNameAndProperties(n.name, n.properties)
+	if !ok {
 		return block.Air{}
 	}
 	return ret
