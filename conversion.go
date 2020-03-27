@@ -2,6 +2,7 @@ package schematic
 
 import (
 	"git.jetbrains.space/dragonfly/dragonfly.git/dragonfly/world"
+	"strings"
 	_ "unsafe" // Unsafe imported for compiler directives.
 )
 
@@ -25,6 +26,18 @@ var world_blocksHash map[string]world.Block
 //go:linkname world_hashProperties git.jetbrains.space/dragonfly/dragonfly.git/dragonfly/world.hashProperties
 //noinspection ALL
 func world_hashProperties(map[string]interface{}) string
+
+func init() {
+	for _, value := range conversion {
+		for name, prop := range value.properties {
+			if strings.HasSuffix(name, "bit") {
+				value.properties[name] = uint8(prop.(int))
+			} else if _, ok := prop.(int); ok {
+				value.properties[name] = int32(prop.(int))
+			}
+		}
+	}
+}
 
 var conversion = map[oldBlock]newBlock{
 	{id: 0xab, metadata: 0x2}:  {name: "minecraft:carpet", properties: map[string]interface{}{"color": "magenta"}},
