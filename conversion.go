@@ -2231,4 +2231,8 @@ var conversion = map[oldBlock]newBlock{
 	{id: 0x48, metadata: 0x4}:  {name: "minecraft:wooden_pressure_plate", properties: map[string]interface{}{"redstone_signal": 4}},
 	{id: 0xc8, metadata: 0x7}:  {name: "minecraft:chorus_flower", properties: map[string]interface{}{"age": 0}},
 	{id: 0x6d, metadata: 0x5}:  {name: "minecraft:stone_brick_stairs", properties: map[string]interface{}{"upside_down_bit": 0x1, "weirdo_direction": 1}},
+	{id: 0x11, metadata: 0xc}:  {name: "minecraft:wood", properties: map[string]interface{}{"old_log_type": "oak", "pillar_axis": "y", "stripped_bit": 0x0}},
+	{id: 0x11, metadata: 0xd}:  {name: "minecraft:wood", properties: map[string]interface{}{"old_log_type": "spruce", "pillar_axis": "y", "stripped_bit": 0x0}},
+	{id: 0x11, metadata: 0xe}:  {name: "minecraft:wood", properties: map[string]interface{}{"old_log_type": "birch", "pillar_axis": "y", "stripped_bit": 0x0}},
+	{id: 0x11, metadata: 0xf}:  {name: "minecraft:wood", properties: map[string]interface{}{"old_log_type": "jungle", "pillar_axis": "y", "stripped_bit": 0x0}},
 }
