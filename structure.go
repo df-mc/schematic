@@ -40,7 +40,7 @@ func (s *schematic) Dimensions() [3]int {
 
 // At returns the block found at a given position in the schematic. If any of the X, Y or Z coordinates passed
 // are out of the bounds of the schematic, At will panic.
-func (s *schematic) At(x, y, z int) world.Block {
+func (s *schematic) At(x, y, z int, _ func(x, y, z int) world.Block) world.Block {
 	index := (y*s.l+z)*s.w + x
 	id, meta := s.blocks[index], s.metadata[index]
 
