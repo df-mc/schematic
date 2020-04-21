@@ -43,6 +43,10 @@ func (s *schematic) Dimensions() [3]int {
 func (s *schematic) At(x, y, z int, _ func(x, y, z int) world.Block) world.Block {
 	index := (y*s.l+z)*s.w + x
 	id, meta := s.blocks[index], s.metadata[index]
+	if id == 0 {
+		// Don't write air blocks: We simply return 0 so that no block is placed at all.
+		return nil
+	}
 
 	old := oldBlock{id: id, metadata: meta}
 	if converted, ok := editionConversion[old]; ok {
