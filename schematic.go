@@ -3,6 +3,7 @@ package schematic
 import (
 	"compress/gzip"
 	"fmt"
+	"git.jetbrains.space/dragonfly/dragonfly.git/dragonfly/world"
 	"github.com/sandertv/gophertunnel/minecraft/nbt"
 	"io"
 	"io/ioutil"
@@ -17,6 +18,9 @@ type Schematic struct {
 var (
 	mu           sync.Mutex
 	decompressor *gzip.Reader
+
+	// Check to ensure that *schematic satisfies the world.Structure interface.
+	_ world.Structure = (*schematic)(nil)
 )
 
 // FromReader attempts to read a Schematic from an io.Reader passed. If successful, the schematic with all its
