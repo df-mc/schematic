@@ -1,7 +1,7 @@
 package schematic
 
 import (
-	"git.jetbrains.space/dragonfly/dragonfly.git/dragonfly/world"
+	"github.com/df-mc/dragonfly/dragonfly/world"
 	"strings"
 	_ "unsafe" // Unsafe imported for compiler directives.
 )
@@ -19,7 +19,7 @@ type newBlock struct {
 	properties map[string]interface{}
 }
 
-//go:linkname world_blockByNameAndProperties git.jetbrains.space/dragonfly/dragonfly.git/dragonfly/world.blockByNameAndProperties
+//go:linkname world_blockByNameAndProperties github.com/df-mc/dragonfly/dragonfly/world.blockByNameAndProperties
 //noinspection ALL
 func world_blockByNameAndProperties(name string, properties map[string]interface{}) (block world.Block, found bool)
 

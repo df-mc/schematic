@@ -2,8 +2,8 @@ package schematic
 
 import (
 	"fmt"
-	"git.jetbrains.space/dragonfly/dragonfly.git/dragonfly/block"
-	"git.jetbrains.space/dragonfly/dragonfly.git/dragonfly/world"
+	"github.com/df-mc/dragonfly/dragonfly/block"
+	"github.com/df-mc/dragonfly/dragonfly/world"
 	"reflect"
 )
 
@@ -40,7 +40,7 @@ func (s *schematic) Dimensions() [3]int {
 
 // At returns the block found at a given position in the schematic. If any of the X, Y or Z coordinates passed
 // are out of the bounds of the schematic, At will panic.
-func (s *schematic) At(x, y, z int, _ func(x, y, z int) world.Block) world.Block {
+func (s *schematic) At(x, y, z int, _ func(int, int, int) world.Block) world.Block {
 	index := (y*s.l+z)*s.w + x
 	id, meta := s.blocks[index], s.metadata[index]
 	if id == 0 {
@@ -62,4 +62,9 @@ func (s *schematic) At(x, y, z int, _ func(x, y, z int) world.Block) world.Block
 		return block.Air{}
 	}
 	return ret
+}
+
+// AdditionalLiquidAt always returns nil.
+func (*schematic) AdditionalLiquidAt(int, int, int) world.Liquid {
+	return nil
 }
