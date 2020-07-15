@@ -15,7 +15,7 @@ package main
 
 import (
 	"github.com/df-mc/dragonfly/dragonfly/world"
-    "github.com/df-mc/schematic"
+	"github.com/df-mc/schematic"
 	"os"
 )
 
