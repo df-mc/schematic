@@ -1,4 +1,4 @@
-module github.com/df-mc/schematic.git
+module github.com/df-mc/schematic
 
 go 1.13
 
