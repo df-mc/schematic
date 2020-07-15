@@ -9,11 +9,13 @@ import (
 // This file is completely automatically generated. It contains a mapping for id+meta => name+properties for
 // all blocks with legacy IDs up to 255.
 
+// oldBlock represents a block with an ID and metadata value.
 type oldBlock struct {
 	id       uint8
 	metadata uint8
 }
 
+// newBlock represents a block with a name and state properties.
 type newBlock struct {
 	name       string
 	properties map[string]interface{}
@@ -35,6 +37,7 @@ func init() {
 	}
 }
 
+// conversion holds a map that allows translating a PE ID+metadata to a block name and state properties.
 var conversion = map[oldBlock]newBlock{
 	{id: 0xab, metadata: 0x2}:  {name: "minecraft:carpet", properties: map[string]interface{}{"color": "magenta"}},
 	{id: 0x29, metadata: 0x0}:  {name: "minecraft:gold_block", properties: map[string]interface{}{}},

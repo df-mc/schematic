@@ -3,6 +3,8 @@ package schematic
 // This file is completely automatically generated. It contains a mapping for Java ID+meta => Bedrock ID+meta.
 // https://gist.github.com/Muqsit/ba3dc24808521d5121391377a37a0fc1 was used to produce the table.
 
+// editionConversion holds a slice with block IDs and metadata that allows converting PC ID+metadata to PE
+// ID+metadata.
 var editionConversion = map[oldBlock]oldBlock{
 	{id: 0x60, metadata: 0xc}: {id: 0x60, metadata: 0xf},
 	{id: 0xbf, metadata: 0x0}: {id: 0x55, metadata: 0x5},

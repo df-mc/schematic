@@ -30,12 +30,12 @@ func FromReader(r io.Reader) (Schematic, error) {
 	if decompressor == nil {
 		reader, err := gzip.NewReader(r)
 		if err != nil {
-			return Schematic{}, fmt.Errorf("error decompressing schematic: %v", err)
+			return Schematic{}, fmt.Errorf("decompress schematic: %w", err)
 		}
 		decompressor = reader
 	} else {
 		if err := decompressor.Reset(r); err != nil {
-			return Schematic{}, fmt.Errorf("error decompressing schematic: %v", err)
+			return Schematic{}, fmt.Errorf("decompress schematic: %w", err)
 		}
 	}
 	b, _ := ioutil.ReadAll(decompressor)
@@ -44,7 +44,7 @@ func FromReader(r io.Reader) (Schematic, error) {
 
 	m := make(map[string]interface{})
 	if err := nbt.UnmarshalEncoding(b, &m, nbt.BigEndian); err != nil {
-		return Schematic{}, fmt.Errorf("error parsing schematic NBT structure: %v", err)
+		return Schematic{}, fmt.Errorf("parse schematic: %w", err)
 	}
 	s := &schematic{Data: m}
 	return Schematic{schematic: s}, s.init()

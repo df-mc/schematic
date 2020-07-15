@@ -28,7 +28,7 @@ func (s *schematic) init() error {
 
 	s.blocks, s.metadata = blockSlice.Interface().([]byte), metadataSlice.Interface().([]byte)
 	if len(s.blocks) != s.w*s.h*s.l || len(s.metadata) != s.w*s.h*s.l {
-		return fmt.Errorf("blocks and metadata were expected to be %v bytes long both (%v*%v*%v), but blocks has length %v and metadata length %v", s.w*s.h*s.l, s.w, s.h, s.l, len(s.blocks), len(s.metadata))
+		return fmt.Errorf("blocks and metadata were expected to be %v bytes long both (%v*%v*%v), but blocks has length %v and metadata has length %v", s.w*s.h*s.l, s.w, s.h, s.l, len(s.blocks), len(s.metadata))
 	}
 	return nil
 }
@@ -44,7 +44,7 @@ func (s *schematic) At(x, y, z int, _ func(int, int, int) world.Block) world.Blo
 	index := (y*s.l+z)*s.w + x
 	id, meta := s.blocks[index], s.metadata[index]
 	if id == 0 {
-		// Don't write air blocks: We simply return 0 so that no block is placed at all.
+		// Don't write air blocks: We simply return nil so that no block is placed at all.
 		return nil
 	}
 
