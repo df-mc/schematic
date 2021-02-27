@@ -21,9 +21,9 @@ type newBlock struct {
 	properties map[string]interface{}
 }
 
-//go:linkname world_blockByNameAndProperties github.com/df-mc/dragonfly/dragonfly/world.blockByNameAndProperties
+//go:linkname world_blockByRuntimeID github.com/df-mc/dragonfly/dragonfly/world.blockByRuntimeID
 //noinspection ALL
-func world_blockByNameAndProperties(name string, properties map[string]interface{}) (block world.Block, found bool)
+func world_blockByRuntimeID(rid uint32) (world.Block, bool)
 
 func init() {
 	for _, value := range conversion {
