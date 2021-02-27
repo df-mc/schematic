@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/df-mc/dragonfly/dragonfly/block"
 	"github.com/df-mc/dragonfly/dragonfly/world"
+	"github.com/df-mc/dragonfly/dragonfly/world/chunk"
 	"reflect"
 )
 
@@ -57,7 +58,11 @@ func (s *schematic) At(x, y, z int, _ func(int, int, int) world.Block) world.Blo
 	if !ok {
 		return block.Air{}
 	}
-	ret, ok := world_blockByNameAndProperties(n.name, n.properties)
+	rid, ok := chunk.StateToRuntimeID(n.name, n.properties)
+	if !ok {
+		return block.Air{}
+	}
+	ret, ok := world_blockByRuntimeID(rid)
 	if !ok {
 		return block.Air{}
 	}
