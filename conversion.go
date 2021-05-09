@@ -1,10 +1,6 @@
 package schematic
 
-import (
-	"github.com/df-mc/dragonfly/dragonfly/world"
-	"strings"
-	_ "unsafe" // Unsafe imported for compiler directives.
-)
+import "strings"
 
 // This file is completely automatically generated. It contains a mapping for id+meta => name+properties for
 // all blocks with legacy IDs up to 255.
@@ -20,10 +16,6 @@ type newBlock struct {
 	name       string
 	properties map[string]interface{}
 }
-
-//go:linkname world_blockByRuntimeID github.com/df-mc/dragonfly/dragonfly/world.blockByRuntimeID
-//noinspection ALL
-func world_blockByRuntimeID(rid uint32) (world.Block, bool)
 
 func init() {
 	for _, value := range conversion {

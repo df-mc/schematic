@@ -3,7 +3,7 @@ package schematic
 import (
 	"compress/gzip"
 	"fmt"
-	"github.com/df-mc/dragonfly/dragonfly/world"
+	"github.com/df-mc/dragonfly/server/world"
 	"github.com/sandertv/gophertunnel/minecraft/nbt"
 	"io"
 	"io/ioutil"

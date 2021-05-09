@@ -2,9 +2,8 @@ package schematic
 
 import (
 	"fmt"
-	"github.com/df-mc/dragonfly/dragonfly/block"
-	"github.com/df-mc/dragonfly/dragonfly/world"
-	"github.com/df-mc/dragonfly/dragonfly/world/chunk"
+	"github.com/df-mc/dragonfly/server/block"
+	"github.com/df-mc/dragonfly/server/world"
 	"reflect"
 )
 
@@ -41,12 +40,12 @@ func (s *schematic) Dimensions() [3]int {
 
 // At returns the block found at a given position in the schematic. If any of the X, Y or Z coordinates passed
 // are out of the bounds of the schematic, At will panic.
-func (s *schematic) At(x, y, z int, _ func(int, int, int) world.Block) world.Block {
+func (s *schematic) At(x, y, z int, _ func(int, int, int) world.Block) (world.Block, world.Liquid) {
 	index := (y*s.l+z)*s.w + x
 	id, meta := s.blocks[index], s.metadata[index]
 	if id == 0 {
 		// Don't write air blocks: We simply return nil so that no block is placed at all.
-		return nil
+		return nil, nil
 	}
 
 	old := oldBlock{id: id, metadata: meta}
@@ -56,20 +55,11 @@ func (s *schematic) At(x, y, z int, _ func(int, int, int) world.Block) world.Blo
 
 	n, ok := conversion[old]
 	if !ok {
-		return block.Air{}
+		return block.Air{}, nil
 	}
-	rid, ok := chunk.StateToRuntimeID(n.name, n.properties)
+	ret, ok := world.BlockByName(n.name, n.properties)
 	if !ok {
-		return block.Air{}
+		return block.Air{}, nil
 	}
-	ret, ok := world_blockByRuntimeID(rid)
-	if !ok {
-		return block.Air{}
-	}
-	return ret
-}
-
-// AdditionalLiquidAt always returns nil.
-func (*schematic) AdditionalLiquidAt(int, int, int) world.Liquid {
-	return nil
+	return ret, nil
 }
